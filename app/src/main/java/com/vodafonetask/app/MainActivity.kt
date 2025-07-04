@@ -28,6 +28,8 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             AppCreation()
+
+
         }
     }
 }
