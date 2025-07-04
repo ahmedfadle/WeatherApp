@@ -29,6 +29,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppCreation()
 
+
+
         }
     }
 }
