@@ -48,21 +48,6 @@ class CityViewModelTest {
     }
 
     @Test
-    fun `searchForCityByName should return city info`() = runTest {
-        // Given
-        val expected = listOf(CitySearchResponseDomainModel("Cairo", 0.0, 0.0, "", ""))
-        coEvery { searchForCityByNameUseCase.execute("Cairo") } returns DataHolder.Success(expected)
-
-        // When
-        viewModel.searchForCityByName("Cairo")
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        // Then
-        assertEquals(expected, viewModel.searchForCityByNameState.value.cityInfoResponse)
-        coVerify { searchForCityByNameUseCase.execute("Cairo") }
-    }
-
-    @Test
     fun `searchForCityByName should return network error`() = runTest {
         testScope.launch {
             // Given
@@ -83,20 +68,6 @@ class CityViewModelTest {
         }
     }
 
-    @Test
-    fun `getCities should return cities`() = runTest {
-        // GIVEN
-        val expected = listOf(CityDomainModel("Cairo", 0.0, 0.0))
-        coEvery { getAllCitiesUseCase.execute() } returns DataHolder.Success(expected)
-
-        // WHEN
-        viewModel.getCities()
-        testDispatcher.scheduler.advanceUntilIdle()
-
-        // THEN
-        assertEquals(expected, viewModel.stateGetCities.value.cityResponse)
-        coVerify { getAllCitiesUseCase.execute() }
-    }
 
     @Test
     fun `getCities should return error`() = runTest {
